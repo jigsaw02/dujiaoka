@@ -1,7 +1,19 @@
 FROM webdevops/php-nginx:7.4
+
+# Copy the application files to the container
 COPY . /app
+
+# Set the WORKDIR to /app so all following commands run within this directory
 WORKDIR /app
-# 暴露端口
-EXPOSE 80
+
+# Change the owner of the /app directory
+RUN chown -R www-data:www-data /app
+
+# Run composer install
 RUN [ "sh", "-c", "composer install --ignore-platform-reqs" ]
-RUN [ "sh", "-c", "chmod -R 777 /app" ]
+
+# Set the permissions of the /app directory
+RUN chmod -R 777 /app
+
+# Expose port 80 for the app
+EXPOSE 80 
