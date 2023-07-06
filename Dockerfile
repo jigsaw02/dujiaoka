@@ -6,3 +6,4 @@ RUN rm /etc/nginx/conf.d/default.conf
 
 # 添加我们自己的配置
 COPY proxy.conf /etc/nginx/conf.d
+EXPOSE 80
